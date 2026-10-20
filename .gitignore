@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+# выгрузки и отчёты содержат персональные данные — в git не кладём
+*.xlsx
+!tests/fixtures/*.xlsx

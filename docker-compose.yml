@@ -1,0 +1,17 @@
+# test:  ENV_FILE=.env.test COMPOSE_PROJECT_NAME=tg_dashi_test docker compose up -d --build
+# prod:  ENV_FILE=.env      COMPOSE_PROJECT_NAME=tg_dashi      docker compose up -d --build
+services:
+  bot:
+    build:
+      context: .
+      args:
+        DEV: ${DEV:-0}
+    image: ${COMPOSE_PROJECT_NAME:-tg_dashi}-bot:latest
+    restart: unless-stopped
+    env_file:
+      - ${ENV_FILE:-.env}
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
